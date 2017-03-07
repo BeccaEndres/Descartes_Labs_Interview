@@ -17,7 +17,9 @@ def main():
 	for line in weather_data:
 		curr_precip = []
 		if date in line:
-			curr_precip = line.split(",")	
+			# splits line of source code by the commas into a list 
+			curr_precip = line.split(",")
+			# checks if there isn't a precipitation number in the list	
 			if curr_precip[19] != "":
 				total_precip = total_precip +  float(curr_precip[19])	
 
