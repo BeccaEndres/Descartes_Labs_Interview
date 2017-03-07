@@ -19,7 +19,7 @@ def main():
 		if date in line:
 			curr_precip = line.split(",")	
 			if curr_precip[19] != "":
-				total_pricip = total_precip +  float(curr_precip[19])	
+				total_precip = total_precip +  float(curr_precip[19])	
 
 	print "The total precipitation in February 2007 was: %d inches" % total_precip
 
