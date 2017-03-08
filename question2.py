@@ -20,7 +20,12 @@ import matplotlib.pyplot as plt
 
 def main():
 	o = gdal.Open(dgsamples.bayou_chip.extract_test)
+	
+	# retrieves all bands from image
 	d = o.ReadAsArray()
+
+	for i in d:
+		np.cov(d[1])
 
 
 if __name__ == "__main__":
