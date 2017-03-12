@@ -24,9 +24,35 @@ def main():
 	# retrieves all bands from image
 	d = o.ReadAsArray()
 
-	for i in d:
-		np.cov(d[1])
+	i = 0
+	while i < 9:	
+		band = o.GetRasterBand(i)
+		print band
+		i = i + 1
+	
+	block_sizes = band.GetBlockSize()
+	x_block_size = block_sizes[0]
+	y_block_size = block_sizes[1]
 
+	xsize = band.XSize
+	ysize = band.YSize
+
+	print x_block_size
+	print y_block_size
+	print xsize
+	print ysize
+
+	print d.shape	
+
+	cov_matrix = []
+#	for i in d:
+#		print d[i]
+#		cov_matrix = np.cov(d[i])
+	
+
+#	plt.plot(d)
+#	plt.axis('')
+#	plt.show()
 
 if __name__ == "__main__":
 	main()
