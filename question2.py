@@ -25,6 +25,9 @@ def main():
 		Cov = np.cov(band.ReadAsArray())
 		i += 1
 		
+
+		plt.plot(Cov)
+		fig.savefig.('Covariance.png')
 	
 if __name__ == "__main__":
 	main()
