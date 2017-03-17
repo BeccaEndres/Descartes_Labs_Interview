@@ -11,6 +11,4 @@ for root, dirs, files in os.walk(start_here):
         	start_letter = root[5].split()    
         	if start_letter == ["l"]:
                 	loop += 1
-                	print(loop)
-                	print('Root is:  %s' % root)
 
