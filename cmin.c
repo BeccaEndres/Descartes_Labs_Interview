@@ -32,16 +32,18 @@ _cmin(unsigned char *img, const int ii, const int jj, const int kk, const int ll
                                 for(int l = 0; l < ll; l++){
                                         unsigned int ptr = idx4(i, j, k, l, ii, jj, kk, ll);
                                         if(img[ptr] != 0 && img[ptr] < min){
-                                               min = img[ptr];}
+                                               min = img[ptr];
+					}
 					
                                         if(img[ptr] > max && img[ptr] <= 180){
-                                               max = img[ptr];}
-                                }
+                                               max = img[ptr];
+					}
+	                        }
                                 imgmax[index] = max;
                                 
 				// checks for NODATA
 				if(min != 256){ 
-                            	    imgmin[index] = min;}				
+                            	    imgmin[index] = min;				
                                 }
                        	}
 		}

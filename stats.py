@@ -13,8 +13,7 @@ from osgeo import gdal
 # import img_stats
 # Usage: ./stats.py *.jp2
 import img_stats
-import pyximport
-from _img_stats2 import cmin
+from _img_stats import cmin
 
 opts = ["COMPRESS=LZW"]
 driver = gdal.GetDriverByName('GTiff')
