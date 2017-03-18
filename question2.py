@@ -18,9 +18,10 @@ def main():
 	# covariance matrix and continues for all bands.
 	# There are 8 bands so goes through the while loop 8 times 
 	while i < 9:	
-		band = o.GetRasterBand(i) #retreieves on band
+		band = o.GetRasterBand(i) #retreieves one band
 		Cov = np.cov(band.ReadAsArray()) #computes covariance of that band
 		i += 1
+
 		plt.plot(Cov) #plots covariance of one band at a time
                 plt.savefig('Covariance.png') #saves plit in png format
 

@@ -9,7 +9,7 @@ def main(t):
     print "seconds since the epoch is %f" % time.time()
 if __name__ == "__main__":
     try:
-       t = int(sys.argv[1])
+       t = float(sys.argv[1]) # needs to be a float instead of a string
        if t < 0:
 	   t = 1
     except:
