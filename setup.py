@@ -7,7 +7,6 @@ setup (
 	cmdclass = {'build_ext':build_ext},
 	ext_modules=[Extension("img_stats",
 	sources=["_img_stats.pyx","cmin.c"],
-	include_dirs=[numpy.get_include()],
-	extra_compile_args=["-std=c99"],)]
+	include_dirs=[numpy.get_include()],)]
 )
 
