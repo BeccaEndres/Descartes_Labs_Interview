@@ -6,14 +6,15 @@
 # make a max image where values in the img[] array larger than 180 don't count
 # you can do this with your choice of numpy or Cython/C
 
-
 #!/usr/bin/env python
 import sys
 import numpy as np
 from osgeo import gdal
 # import img_stats
 # Usage: ./stats.py *.jp2
-import _img_stats.so
+import img_stats
+import pyximport
+from _img_stats2 import cmin
 
 opts = ["COMPRESS=LZW"]
 driver = gdal.GetDriverByName('GTiff')

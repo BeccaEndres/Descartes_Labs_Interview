@@ -23,7 +23,11 @@
 void
 _cmin(unsigned char *img, const int ii, const int jj, const int kk, const int ll, unsigned char *out)
 {
-	printf("ch1");
-
-
+        for(int i = 0; i < ii; i++){
+                for(int j = 0; j < jj; j++){
+                        for(int k = 0; k < kk; k++){
+                       	}
+		}
+	}
+	return;
 }
