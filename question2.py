@@ -12,18 +12,19 @@ import matplotlib.pyplot as plt
 
 def main():
 	o = gdal.Open(dgsamples.bayou_chip.extract_test)
-	i = 1
-	
-	# Retrieves one band at a time and computes it's
-	# covariance matrix and continues for all bands.
-	# There are 8 bands so goes through the while loop 8 times 
-	while i < 9:	
-		band = o.GetRasterBand(i) #retreieves one band
-		Cov = np.cov(band.ReadAsArray()) #computes covariance of that band
-		i += 1
+	d = o.ReadAsArray()
 
-		plt.plot(Cov) #plots covariance of one band at a time
-                plt.savefig('Covariance.png') #saves plit in png format
+	means = [np.mean(ros) for ros in d]
+	cov = np.zeros((d.shape[0], d.shape[0]))	
+
+	# formula for coputing the covariance matris of the bands
+	for i in range(d.shape[0]):
+		for j in range(i + 1):
+			cov[j][i] = cov[i][j] = np.sum(np.multiply(d[i] - means[i],d[j] - means[j]))/(d[i].size - 1)
+		
+
+	plt.plot(cov) 
+        plt.savefig('Covariance.png') #saves plot in png format
 
 
 if __name__ == "__main__":
