@@ -26,12 +26,25 @@ for i,arg in enumerate(sys.argv[1:]):
     print "Reading %s" % arg
     obj = gdal.Open(arg, gdal.gdalconst.GA_ReadOnly)
     _x = obj.ReadAsArray()
-    _x = np.clip(_x, 0, 180) # clips values greater than 180 and sets them to 180
+    _x = np.clip(0.1 * _x, 0, 255) 
     img[:,:,:,i] =  _x.astype('uint8')
-imgmax = np.amax(img, axis=3)
-outds  = driver.Create("max.tif", cols, rows, 3, gdal.GDT_Byte, options=opts)
+
+# max image value to send to cmin then not count values greater than 180
+imgmax = np.zeros(img.shape[0:3], dtype = 'uint8') 
+
+# min image value to send to cim then ignore values where there is no data
+imgmin = np.zeros(img.shape[0:3], dtype = 'uint8') 
+img_stats.cmin(img, imgmin, imgmax)
+
+# output file of task 1
+outds_max = driver.Create("max.tif", cols, rows, 3, gdal.GDT_Byte, options=opts)
+
+# output file of tast 2
+outds_min = driver.Create("min.tif", cols, rows, 3, gdal.GDT_Byte, options=opts)
+
 for b in range(3):
-    outds.GetRasterBand(b+1).WriteArray(imgmax[b])
+    outds_max.GetRasterBand(b+1).WriteArray(imgmax[b])
+    outds_min.GetRasterBand(b+1).WriteArray(imgmax[b])
 del outds
 
 

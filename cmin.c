@@ -21,11 +21,28 @@
 #define idx2(j, k, jj, kk) \
     (j)*(kk)+(k)
 void
-_cmin(unsigned char *img, const int ii, const int jj, const int kk, const int ll, unsigned char *out)
+_cmin(unsigned char *img, const int ii, const int jj, const int kk, const int ll, unsigned char *out, unsigned char *imgmin, unsigned char *imgmax)
 {
         for(int i = 0; i < ii; i++){
                 for(int j = 0; j < jj; j++){
                         for(int k = 0; k < kk; k++){
+                                int index = idx3( i, j , k, ii, jj, kk);
+                                int min = 256;
+                                int max = 0;
+                                for(int l = 0; l < ll; l++){
+                                        unsigned int ptr = idx4(i, j, k, l, ii, jj, kk, ll);
+                                        if(img[ptr] != 0 && img[ptr] < min){
+                                               min = img[ptr];}
+					
+                                        if(img[ptr] > max && img[ptr] <= 180){
+                                               max = img[ptr];}
+                                }
+                                imgmax[index] = max;
+                                
+				// checks for NODATA
+				if(min != 256){ 
+                            	    imgmin[index] = min;}				
+                                }
                        	}
 		}
 	}
