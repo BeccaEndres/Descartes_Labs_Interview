@@ -17,15 +17,16 @@ def main():
 	means = [np.mean(ros) for ros in d]
 	cov = np.zeros((d.shape[0], d.shape[0]))	
 
-	# formula for coputing the covariance matris of the bands
+	# formula for coputing the covariance matrix of the bands
 	for i in range(d.shape[0]):
 		for j in range(i + 1):
 			cov[j][i] = cov[i][j] = np.sum(np.multiply(d[i] - means[i],d[j] - means[j]))/(d[i].size - 1)
 		
-
-	plt.plot(cov) 
-        plt.savefig('Covariance.png') #saves plot in png format
-
+	plt.ioff()
+	plt.matshow(cov)
+	plt.colorbar()
+	plt.title('Covariance Matrix')
+	plt.savefig('Covariance.png', format = 'png')
 
 if __name__ == "__main__":
 	main()
